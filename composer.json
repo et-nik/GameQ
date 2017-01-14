@@ -1,5 +1,5 @@
 {
-  "name": "austinb/gameq",
+  "name": "knik/gameq",
   "description": "GameQ Gameserver Library",
   "keywords": ["gameq","serverstatus"],
   "version": "v3.0.10",
@@ -37,6 +37,11 @@
       "name": "Sebastian Weidenbach",
       "role": "Developer",
       "homepage": "http://sebastianwe.users.sourceforge.net/"
+    },
+    {
+      "name": "Kuznetsov Nikita",
+      "role": "Developer",
+      "homepage": "http://github.com/ET-Nik"
     }
   ],
   "support": {
