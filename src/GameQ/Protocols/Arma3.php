@@ -33,25 +33,20 @@ use GameQ\Result;
 class Arma3 extends Source
 {
     /**
-     * DLC ^2 constants
-     */
-    const DLC_KARTS = 1,
-        DLC_MARKSMEN = 2,
-        DLC_HELICOPTERS = 4,
-        DLC_APEX = 16;
-
-    /**
      * Defines the names for the specific game DLCs
      *
      * @var array
      */
     protected $dlcNames = [
-        self::DLC_KARTS       => 'Karts',
-        self::DLC_MARKSMEN    => 'Marksmen',
-        self::DLC_HELICOPTERS => 'Helicopters',
-        self::DLC_APEX        => 'Apex',
+        'Karts',
+        'Marksmen',
+        'Helicopters',
+        'Apex',
+        'Jets',
+        'Laws of War',
+        'Tac-Ops',
+        'Tanks',
     ];
-
 
     /**
      * String name of this protocol class
@@ -114,8 +109,9 @@ class Arma3 extends Source
         // Get results
         $result->add('rules_protocol_version', $responseBuffer->readInt8());
         $result->add('overflow', $responseBuffer->readInt8());
-        $dlcBit = $responseBuffer->readInt8(); // Grab DLC bit and use it later
-        $responseBuffer->skip(); // Reserved, burn it
+        $dlcBit = decbin($responseBuffer->readInt8()); // Grab DLC bit 1 and use it later
+        $dlcBit2 = decbin($responseBuffer->readInt8()); // Grab DLC bit 2 and use it later
+        $dlcCount = substr_count($dlcBit, '1') + substr_count($dlcBit2, '1'); // Count the DLCs
         // Grab difficulty so we can man handle it...
         $difficulty = $responseBuffer->readInt8();
 
@@ -130,17 +126,14 @@ class Arma3 extends Source
         // Crosshair
         $result->add('crosshair', $responseBuffer->readInt8());
 
-        // Next are the dlc bits so loop over the dlcBit so we can determine which DLC's are running
-        for ($x = 1; $x <= $dlcBit; $x *= 2) {
-            // Enabled, add it to the list
-            if ($x & $dlcBit) {
-                $result->addSub('dlcs', 'name', $this->dlcNames[$x]);
-                $result->addSub('dlcs', 'hash', dechex($responseBuffer->readInt32()));
-            }
+        // Loop over the DLC bit so we can pull in the infor for the DLC (if enabled)
+        for ($x = 0; $x < $dlcCount; $x++) {
+            $result->addSub('dlcs', 'name', $this->dlcNames[$x]);
+            $result->addSub('dlcs', 'hash', dechex($responseBuffer->readInt32()));
         }
 
         // No longer needed
-        unset($dlcBit);
+        unset($dlcBit, $dlcBit2, $dlcCount);
 
         // Grab the mod count
         $modCount = $responseBuffer->readInt8();
