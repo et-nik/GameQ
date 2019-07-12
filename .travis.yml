@@ -1,12 +1,11 @@
 language: php
 
 php:
-  - 5.4.45
-  - 5.5.38
-  - 5.6.36
-  - 7.0.31
-  - 7.1.21
-  - 7.2.9
+  - 5.6.40
+  - 7.0.33
+  - 7.1.30
+  - 7.2.19
+  - 7.3.6
 
 matrix:
     allow_failures:
@@ -22,9 +21,9 @@ script:
   - vendor/bin/phpunit -c phpunit.xml --verbose
 
 after_script:
-  - php vendor/bin/coveralls -v
+  - php vendor/bin/php-coveralls -v
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
 
 after_success:
-  - travis_retry php vendor/bin/coveralls -v
+  - travis_retry php vendor/bin/php-coveralls -v
