@@ -25,6 +25,10 @@ namespace GameQ\Protocols;
  */
 class Goldsource extends Source
 {
+    /**
+     * @inheritdoc
+     */
+    protected $source_engine = self::GOLDSOURCE_ENGINE;
 
     /**
      * String name of this protocol class
