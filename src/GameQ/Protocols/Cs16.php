@@ -24,7 +24,7 @@ namespace GameQ\Protocols;
  * @package GameQ\Protocols
  * @author  Austin Bischoff <austin@codebeard.com>
  */
-class Cs16 extends Source
+class Cs16 extends Goldsource
 {
 
     /**

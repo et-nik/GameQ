@@ -5,7 +5,7 @@
     "gameq",
     "serverstatus"
   ],
-  "version": "v3.0.14",
+  "version": "v3.0.16",
   "license": "LGPL-3.0+",
   "authors": [
     {
@@ -44,7 +44,7 @@
     {
       "name": "Kuznetsov Nikita",
       "role": "Developer",
-      "homepage": "http://github.com/ET-Nik"
+      "homepage": "http://github.com/et-nik"
     }
   ],
   "support": {
