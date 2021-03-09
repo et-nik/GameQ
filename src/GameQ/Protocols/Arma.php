@@ -19,32 +19,25 @@
 namespace GameQ\Protocols;
 
 /**
- * Insurgency Sandstorm Class
+ * Class Arma
  *
  * @package GameQ\Protocols
- * @author  naXe <naxeify@gmail.com>
- * @author Austin Bischoff <austin@codebeard.com>
+ *
+ * @author  Wilson Jesus <>
  */
-class Insurgencysand extends Source
+class Arma extends Gamespy2
 {
     /**
      * String name of this protocol class
      *
      * @type string
      */
-    protected $name = 'insurgencysand';
+    protected $name = 'arma';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "Insurgency: Sandstorm";
-
-    /**
-     * query_port = client_port + 29
-     *
-     * @type int
-     */
-    protected $port_diff = 29;
+    protected $name_long = "ArmA Armed Assault";
 }

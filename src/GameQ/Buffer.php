@@ -151,7 +151,7 @@ class Buffer
     {
 
         $len = strlen($this->data);
-        $string = $this->data{strlen($this->data) - 1};
+        $string = $this->data[strlen($this->data) - 1];
         $this->data = substr($this->data, 0, $len - 1);
         $this->length -= 1;
 
@@ -276,8 +276,8 @@ class Buffer
         // Get position of delimiters
         $pos = [];
         foreach ($delims as $delim) {
-            if ($p = strpos($this->data, $delim, min($this->index, $this->length))) {
-                $pos[] = $p;
+            if ($index = strpos($this->data, $delim, min($this->index, $this->length))) {
+                $pos[] = $index;
             }
         }
 

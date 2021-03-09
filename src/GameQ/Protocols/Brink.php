@@ -19,32 +19,32 @@
 namespace GameQ\Protocols;
 
 /**
- * Urban Terror Class
+ * Class Brink
  *
  * @package GameQ\Protocols
- * @author  naXe <naxeify@gmail.com>
- * @author  Austin Bischoff <austin@codebeard.com>
+ *
+ * @author Wilson Jesus <>
  */
-class Sof2mp extends Quake3
+class Brink extends Source
 {
     /**
      * String name of this protocol class
      *
      * @type string
      */
-    protected $name = 'sof2mp';
+    protected $name = 'brink';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "Solder of Fortune II";
+    protected $name_long = "Brink";
 
     /**
-     * The client join link
+     * query_port = client_port + 1
      *
-     * @type string
+     * @type int
      */
-    protected $join_link = "sof2mp://%s:%d/";
+    protected $port_diff = 1;
 }

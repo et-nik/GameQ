@@ -19,32 +19,25 @@
 namespace GameQ\Protocols;
 
 /**
- * Urban Terror Class
+ * Call of Duty Protocol Class
  *
  * @package GameQ\Protocols
- * @author  naXe <naxeify@gmail.com>
- * @author  Austin Bischoff <austin@codebeard.com>
+ *
+ * @author  Wilson Jesus <>
  */
-class Urbanterror extends Quake3
+class Cod extends Quake3
 {
     /**
      * String name of this protocol class
      *
      * @type string
      */
-    protected $name = 'urbanterror';
+    protected $name = 'cod';
 
     /**
      * Longer string name of this protocol class
      *
      * @type string
      */
-    protected $name_long = "Urban Terror";
-
-    /**
-     * The client join link
-     *
-     * @type string
-     */
-    protected $join_link = "urt://%s:%d/";
+    protected $name_long = "Call of Duty";
 }
