@@ -20,7 +20,6 @@ namespace GameQ\Tests\Protocols;
 
 class Gamespy3 extends Base
 {
-
     /**
      * Holds stub on setup
      *
@@ -40,14 +39,13 @@ class Gamespy3 extends Base
 
     /**
      * Setup
+     *
+     * @before
      */
-    public function setUp()
+    public function customSetUp()
     {
-
         // Create the stub class
-        $this->stub = $this->getMockBuilder('\GameQ\Protocols\Gamespy3')
-            ->enableProxyingToOriginalMethods()
-            ->getMock();
+        $this->stub = new \GameQ\Protocols\Gamespy3();
     }
 
     /**
@@ -55,9 +53,8 @@ class Gamespy3 extends Base
      */
     public function testPackets()
     {
-
         // Test to make sure packets are defined properly
-        $this->assertEquals($this->packets, \PHPUnit\Framework\Assert::readAttribute($this->stub, 'packets'));
+        $this->assertEquals($this->packets, $this->stub->getPacket());
     }
 
     /**
@@ -65,7 +62,6 @@ class Gamespy3 extends Base
      */
     public function testChallengeapply()
     {
-
         $packets = $this->packets;
 
         //09102030403000
@@ -79,11 +75,6 @@ class Gamespy3 extends Base
         // Apply the challenge
         $this->stub->challengeParseAndApply($challenge_buffer);
 
-        // Build reflection to access changed data
-        $reflectionClass = new \ReflectionClass($this->stub);
-        $reflectionProperty = $reflectionClass->getProperty('__phpunit_originalObject');
-        $reflectionProperty->setAccessible(true);
-
-        $this->assertEquals($packets, \PHPUnit\Framework\Assert::readAttribute($reflectionProperty->getValue($this->stub), 'packets'));
+        $this->assertEquals($packets, $this->stub->getPacket());
     }
 }

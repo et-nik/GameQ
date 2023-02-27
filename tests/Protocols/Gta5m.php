@@ -39,14 +39,13 @@ class Gta5m extends Base
 
     /**
      * Setup
+     *
+     * @before
      */
-    public function setUp()
+    public function customSetUp()
     {
-
         // Create the stub class
-        $this->stub = $this->getMockBuilder('\GameQ\Protocols\Gta5m')
-            ->enableProxyingToOriginalMethods()
-            ->getMock();
+        $this->stub = new \GameQ\Protocols\Gta5m();
     }
 
     /**
@@ -54,9 +53,8 @@ class Gta5m extends Base
      */
     public function testPackets()
     {
-
         // Test to make sure packets are defined properly
-        $this->assertEquals($this->packets, \PHPUnit\Framework\Assert::readAttribute($this->stub, 'packets'));
+        $this->assertEquals($this->packets, $this->stub->getPacket());
     }
 
     /**
@@ -64,7 +62,6 @@ class Gta5m extends Base
      */
     public function testInvalidPacketType()
     {
-
         // Read in a css source file
         $source = file_get_contents(sprintf('%s/Providers/Gta5m/1_response.txt', __DIR__));
 
@@ -79,12 +76,11 @@ class Gta5m extends Base
 
     /**
      * Test for invalid packet type in response
-     *
-     * @expectedException \Exception
-     * @expectedExceptionMessage
      */
     public function testInvalidPacketTypeDebug()
     {
+        $this->expectException(\Exception::class);
+        //$this->expectExceptionMessage("GameQ\Protocols\Gta5m::processResponse response type '����infoResponses' is not valid");
 
         // Read in a css source file
         $source = file_get_contents(sprintf('%s/Providers/Gta5m/1_response.txt', __DIR__));
@@ -106,7 +102,6 @@ class Gta5m extends Base
      */
     public function testResponses($responses, $result)
     {
-
         // Pull the first key off the array this is the server ip:port
         $server = key($result);
 
@@ -116,6 +111,6 @@ class Gta5m extends Base
             $responses
         );
 
-        $this->assertEquals($result[ $server ], $testResult, '', 0.000000001);
+        $this->assertEqualsDelta($result[ $server ], $testResult, 0.000000001);
     }
 }

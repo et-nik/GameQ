@@ -35,7 +35,6 @@ class Dayzmod extends Base
      */
     public function testResponses($responses, $result)
     {
-
         // Pull the first key off the array this is the server ip:port
         $server = key($result);
 
@@ -45,6 +44,6 @@ class Dayzmod extends Base
             $responses
         );
 
-        $this->assertEquals($result[$server], $testResult, '', 0.0000001);
+        $this->assertEqualsDelta($result[$server], $testResult, 0.0000001);
     }
 }
