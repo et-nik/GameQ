@@ -1,0 +1,21 @@
+ÿÿÿÿstatusResponse
+\challenge\\checksum\FA3F6549\g_gametype\war\g_hardcore\0\gamename\IW4\isPrivate\0\mapname\mp_terminal\matchtype\2\protocol\150\scr_game_allowkillcam\1\scr_team_fftype\0\shortversion\0.7.1\sv_allowAnonymous\0\sv_allowClientConsole\1\sv_floodProtect\1\sv_hostname\^:[NBS] ^3Terminal 24/7 ^:[US]\sv_maxPing\0\sv_maxRate\25000\sv_maxclients\18\sv_minPing\0\sv_privateClients\0\sv_privateClientsForClients\0\sv_pure\0\sv_securityLevel\23
+1440 37 "amongus"
+2100 80 "Nimmy404"
+2260 155 "TallWhhhiteBoy"
+220 71 "Breezyy4K"
+1600 84 "MikeHawk-IsBig"
+3640 17 "Speciulsv2"
+1400 106 "kevin"
+1420 42 "ThatElectricPot"
+1660 80 "Spectertrader"
+0 50 "nextah"
+0 79 "^2UR Revs"
+100 53 "Alex"
+920 66 "TTV.Getherdunn7"
+0 98 "^5cx760"
+700 107 "Arctic"
+2220 40 "BloodyBlade"
+2480 51 "^:Ur Mum Gae"
+1560 34 "Seeker"
+

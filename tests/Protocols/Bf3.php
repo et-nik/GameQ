@@ -20,7 +20,6 @@ namespace GameQ\Tests\Protocols;
 
 class Bf3 extends Base
 {
-
     /**
      * Holds stub on setup
      *
@@ -42,14 +41,13 @@ class Bf3 extends Base
 
     /**
      * Setup
+     *
+     * @before
      */
-    public function setUp()
+    public function customSetUp()
     {
-
         // Create the stub class
-        $this->stub = $this->getMockBuilder('\GameQ\Protocols\Bf3')
-            ->enableProxyingToOriginalMethods()
-            ->getMock();
+        $this->stub = new \GameQ\Protocols\Bf3();
     }
 
     /**
@@ -57,19 +55,17 @@ class Bf3 extends Base
      */
     public function testPackets()
     {
-
         // Test to make sure packets are defined properly
-        $this->assertEquals($this->packets, \PHPUnit\Framework\Assert::readAttribute($this->stub, 'packets'));
+        $this->assertEquals($this->packets, $this->stub->getPacket());
     }
 
     /**
      * Test for invalid packet length
-     *
-     * @expectedException \Exception
-     * @expectedExceptionMessage GameQ\Protocols\Bf3::processResponse packet length does not match expected length!
      */
     public function testInvalidPacketLengthDebug()
     {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("GameQ\Protocols\Bf3::processResponse packet length does not match expected length!");
 
         // Read in a css source file
         $source = file_get_contents(sprintf('%s/Providers/Bf3/1_response.txt', __DIR__));
@@ -91,7 +87,6 @@ class Bf3 extends Base
      */
     public function testResponses($responses, $result)
     {
-
         // Pull the first key off the array this is the server ip:port
         $server = key($result);
 

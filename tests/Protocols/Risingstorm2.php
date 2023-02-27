@@ -25,7 +25,6 @@ namespace GameQ\Tests\Protocols;
  */
 class Risingstorm2 extends Base
 {
-
     /**
      * Holds stub on setup
      *
@@ -35,14 +34,13 @@ class Risingstorm2 extends Base
 
     /**
      * Setup
+     *
+     * @before
      */
-    public function setUp()
+    public function customSetUp()
     {
-
         // Create the stub class
-        $this->stub = $this->getMockBuilder('\GameQ\Protocols\Risingstorm2')
-            ->enableProxyingToOriginalMethods()
-            ->getMock();
+        $this->stub = new \GameQ\Protocols\Risingstorm2();
     }
 
     /**
@@ -63,7 +61,6 @@ class Risingstorm2 extends Base
      */
     public function testResponses($responses, $result)
     {
-
         // Pull the first key off the array this is the server ip:port
         $server = key($result);
 
@@ -73,6 +70,6 @@ class Risingstorm2 extends Base
             $responses
         );
 
-        $this->assertEquals($result[$server], $testResult);
+        $this->assertEqualsDelta($result[$server], $testResult, 0.000000001);
     }
 }

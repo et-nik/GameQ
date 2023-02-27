@@ -35,7 +35,6 @@ class Conanexiles extends Base
      */
     public function testResponses($responses, $result)
     {
-
         // Pull the first key off the array this is the server ip:port
         $server = key($result);
 
@@ -49,6 +48,6 @@ class Conanexiles extends Base
             ]
         );
 
-        $this->assertEquals($result[$server], $testResult, '', 0.00000001);
+        $this->assertEqualsDelta($result[$server], $testResult, 0.00000001);
     }
 }

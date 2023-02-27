@@ -29,7 +29,6 @@ use GameQ\Tests\TestBase;
  */
 abstract class Base extends TestBase
 {
-
     /**
      * Shared provider to give protocols the data to test with
      *
@@ -37,7 +36,6 @@ abstract class Base extends TestBase
      */
     public function loadData()
     {
-
         // Explode the class that called to avoid strict error
         $class = explode('\\', get_called_class());
 
@@ -71,60 +69,5 @@ abstract class Base extends TestBase
         unset($files, $fileinfo, $providersLookup);
 
         return $providers;
-    }
-
-    /**
-     * Generic query test function to simulate testing of protocol classes
-     *
-     * @param string $host
-     * @param string $protocol
-     * @param array  $responses
-     * @param bool   $debug
-     * @param array  $server_options
-     *
-     * @return mixed
-     */
-    protected function queryTest($host, $protocol, $responses, $debug = false, $server_options = [])
-    {
-
-        // Create a mock server
-        $server = $this->getMockBuilder('\GameQ\Server')
-            ->setConstructorArgs([
-                [
-                    \GameQ\Server::SERVER_HOST    => $host,
-                    \GameQ\Server::SERVER_TYPE    => $protocol,
-                    \GameQ\Server::SERVER_OPTIONS => $server_options,
-                ],
-            ])
-            ->enableProxyingToOriginalMethods()
-            ->getMock();
-
-        // Invoke beforeSend function
-        $server->protocol()->beforeSend($server);
-
-        // Set the packet response as if we have really queried it
-        $server->protocol()->packetResponse($responses);
-
-        // Create a mock GameQ
-        $gq_mock = $this->getMockBuilder('\GameQ\GameQ')
-            ->enableProxyingToOriginalMethods()
-            ->getMock();
-        $gq_mock->setOption('debug', $debug);
-        $gq_mock->removeFilter('normalize');
-
-        // Reflect on GameQ class so we can parse
-        $gameq = new \ReflectionClass($gq_mock);
-
-        // Get the parse method so we can call it
-        $method = $gameq->getMethod('doParseResponse');
-
-        // Set the method to accessible
-        $method->setAccessible(true);
-
-        $testResult = $method->invoke($gq_mock, $server);
-
-        unset($server, $gq_mock, $gameq, $method);
-
-        return $testResult;
     }
 }

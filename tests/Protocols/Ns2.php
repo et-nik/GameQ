@@ -35,7 +35,6 @@ class Ns2 extends Base
      */
     public function testResponses($responses, $result)
     {
-
         // Pull the first key off the array this is the server ip:port
         $server = key($result);
 
@@ -45,6 +44,6 @@ class Ns2 extends Base
             $responses
         );
 
-        $this->assertEquals($result[$server], $testResult);
+        $this->assertEqualsDelta($result[$server], $testResult, 0.000000001);
     }
 }

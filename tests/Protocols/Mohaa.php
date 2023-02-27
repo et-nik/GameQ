@@ -25,7 +25,6 @@ namespace GameQ\Tests\Protocols;
  */
 class Mohaa extends Base
 {
-
     /**
      * Holds stub on setup
      *
@@ -35,14 +34,13 @@ class Mohaa extends Base
 
     /**
      * Setup
+     *
+     * @before
      */
-    public function setUp()
+    public function customSetUp()
     {
-
         // Create the stub class
-        $this->stub = $this->getMockBuilder('\GameQ\Protocols\Mohaa')
-            ->enableProxyingToOriginalMethods()
-            ->getMock();
+        $this->stub = new \GameQ\Protocols\Mohaa();
     }
 
     /**
@@ -64,7 +62,6 @@ class Mohaa extends Base
      */
     public function testResponses($responses, $result)
     {
-
         // Pull the first key off the array this is the server ip:port
         $server = key($result);
 
